@@ -34,3 +34,12 @@
 .search-bar-container {
   display: flex;
 }
+
+.list-group-item {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  transition: all ease-in-out .3s;
+}
