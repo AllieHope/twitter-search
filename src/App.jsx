@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import logo from './twitter_logo.svg';
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
+import logo from "./twitter_logo.svg";
+import "./App.css";
 
 const APITOKEN = "";
 
@@ -10,21 +10,28 @@ const SearchBar = ({ search }) => {
   let input;
 
   return (
-    <form className="form-group search-bar-container"
+    <form
+      className="form-group search-bar-container"
       onSubmit={(e) => {
         e.preventDefault();
         search(input.value);
-        input.value = '';
-      }}>
-      <input className="form-control"
+        input.value = "";
+      }}
+    >
+      <input
+        className="form-control"
         placeholder="Search for a term on Twitter"
-        ref={node => {
+        ref={(node) => {
           input = node;
-        }} />
-      <button className="btn btn-primary" onClick={() => {
+        }}
+      />
+      <button
+        className="btn btn-primary"
+        onClick={() => {
         search(input.value);
-        input.value = '';
-      }}>
+        input.value = "";
+      }}
+      >
         search
       </button>
     </form>
@@ -34,15 +41,13 @@ const SearchBar = ({ search }) => {
 const Result = ({ result }) => {
   const link = `https://twitter.com/statuses/${result.id_str}`;
   return (<a href={link} target="_blank" className="list-group-item">{result.text}</a>);
-}
+};
 
 const ResultList = ({ results }) => {
   // Map through the search results
-  const resultNode = results.map((result) => {
-    return (<Result result={result} key={result.id} />)
-  });
+  const resultNode = results.map(result => (<Result result={result} key={result.id} />));
   return (<div className="list-group">{resultNode}</div>);
-}
+};
 
 // Container component
 class SearchApp extends Component {
@@ -51,7 +56,7 @@ class SearchApp extends Component {
     super(props);
     // Set initial state
     this.state = {
-      searchResults: []
+      searchResults: [],
     };
     this.apiBaseUrl = "https://api.twitter.com/1.1/search/tweets.json";
   }
@@ -62,13 +67,13 @@ class SearchApp extends Component {
     const apiUrl = `${this.apiBaseUrl}?q=${encodedValue}&count=10`;
 
     // Make HTTP reques with Axios
-    axios.get(apiUrl, { headers: { "Authorization": APITOKEN } })
+    axios.get(apiUrl, { headers: { Authorization: APITOKEN } })
       .then((res) => {
         // Set state with result
         this.setState({ searchResults: res.data.statuses });
       })
       .catch((error) => {
-        console.log('error ' + error);
+        console.log(`error ${error}`);
       });
   }
 
@@ -83,7 +88,7 @@ class SearchApp extends Component {
         this.setState({ searchResults: res.data[0].statuses });
       })
       .catch((error) => {
-        console.log('error ' + error);
+        console.log(`error ${error}`);
       });
   }
 
