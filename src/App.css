@@ -1,22 +1,36 @@
-.App {
+.app-container {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   height: 80px;
 }
 
-.App-header {
+.app-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
-.App-title {
+.app-title {
   font-size: 1.5em;
+  padding-top: 15px;
 }
 
-.App-intro {
+.app-content {
   font-size: large;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 425px) {
+  .app-content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+.search-bar-container {
+  display: flex;
 }
